@@ -10,7 +10,7 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase
      */
     public function negativeTemperatureCanBeSet()
     {
-        new Temperature(-1);
+        Temperature::take(-1);
     }
 
     /** @test */
@@ -20,7 +20,7 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             $measure,
-            (new Temperature($measure))->measure()
+            (Temperature::take($measure))->measure()
         );
     }
 
