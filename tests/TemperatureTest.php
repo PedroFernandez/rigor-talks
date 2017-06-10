@@ -23,4 +23,15 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase
             (new Temperature($measure))->measure()
         );
     }
+
+    /** @test */
+    public function positiveTemperatureCanBeSetWithANamedConstructor()
+    {
+        $measure = 12;
+
+        $this->assertEquals(
+            $measure,
+            (Temperature::take($measure))->measure()
+        );
+    }
 }
