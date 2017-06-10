@@ -1,6 +1,7 @@
 <?php
 
 use RigorTalks\Temperature;
+use RigorTalks\TemperatureTestClass;
 
 class TemperatureTest extends \PHPUnit\Framework\TestCase
 {
@@ -32,6 +33,14 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             $measure,
             (Temperature::take($measure))->measure()
+        );
+    }
+
+    /** @test */
+    public function checkThatSuperHotTemperatureIsSuperHot()
+    {
+        $this->assertTrue(
+            TemperatureTestClass::take(100)->isSuperHot()
         );
     }
 }
