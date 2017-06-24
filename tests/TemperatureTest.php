@@ -72,6 +72,22 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase implements ColdThresho
     }
 
     /** @test */
+    public function checkThatTwoTemperaturesCanBeAdded()
+    {
+        $a = Temperature::take(50);
+        $b = Temperature::take(50);
+
+        $c = $a->add($b);
+
+        $this->assertSame(
+            100,
+            $c->measure()
+        );
+        $this->assertNotSame($c, $a);
+        $this->assertNotSame($c, $b);
+    }
+
+    /** @test */
     public function checkThatTemperatureCanBeCreatedFromStation()
     {
         $this->assertSame(
