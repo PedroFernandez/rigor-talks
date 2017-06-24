@@ -77,4 +77,11 @@ class Temperature
 
         return $conn->fetchColumn('SELECT hot_threshold FROM configuration');
     }
+
+    public static function fromStation($station)
+    {
+        return new self(
+            $station->sensor()->temperature()->measure()
+        );
+    }
 }
