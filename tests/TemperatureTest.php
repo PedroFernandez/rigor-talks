@@ -55,6 +55,22 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase implements ColdThresho
         );
     }
 
+    /** @test */
+    public function checkThatSuperColdTemperatureIsSuperColdWithAnonymousClass()
+    {
+        $this->assertTrue(
+            Temperature::take(10)->isSuperCold(
+                new class implements ColdThresholdSource{
+                    public function getThreshold()
+                    {
+                        return 50;
+                    }
+
+                }
+            )
+        );
+    }
+
     public function getThreshold()
     {
         return 50;
