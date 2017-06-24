@@ -2,8 +2,9 @@
 
 use RigorTalks\Temperature;
 use RigorTalks\TemperatureTestClass;
+use RigorTalks\ColdThresholdSource;
 
-class TemperatureTest extends \PHPUnit\Framework\TestCase
+class TemperatureTest extends \PHPUnit\Framework\TestCase implements ColdThresholdSource
 {
     /**
      * @test
@@ -42,5 +43,20 @@ class TemperatureTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(
             TemperatureTestClass::take(100)->isSuperHot()
         );
+    }
+
+    /** @test */
+    public function checkThatSuperColdTemperatureIsSuperCold()
+    {
+        $this->assertTrue(
+            Temperature::take(10)->isSuperCold(
+                $this
+            )
+        );
+    }
+
+    public function getThreshold()
+    {
+        return 50;
     }
 }

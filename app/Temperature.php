@@ -58,6 +58,13 @@ class Temperature
         return $this->measure() > $threshold;
     }
 
+    public function isSuperCold(ColdThresholdSource $coldThresholdSource)
+    {
+        $threshold = $coldThresholdSource->getThreshold();
+
+        return $this->measure() < $threshold;
+    }
+
     protected function getThreshold()
     {
         $conn = \Doctrine\DBAL\DriverManager::getConnection(array(
